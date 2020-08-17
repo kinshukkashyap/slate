@@ -267,23 +267,23 @@
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># pass the X-XSRF-TOKEN in header with each request</span>
 curl -X GET <span class="se">\ </span>api_endpoint_here <span class="se">\</span>
-  -H <span class="s1">'X-XSRF-TOKEN: somerandomtoken'</span>
+  -H <span class="s1">'X-XSRF-TOKEN: usertoken'</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>somerandomtoken</code> with your API key.</p>
+<p>Make sure to replace <code>usertoken</code> with your session token.</p>
 </blockquote>
 
 <p>We expect for the X-XSRF-TOKEN  to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code>X-XSRF-TOKEN: somerandomtoken</code></p>
+<p><code>X-XSRF-TOKEN: usertoken</code></p>
 
 <aside class="notice">
-You must replace <code>somerandomtoken</code> with your personal API key.
+You must replace <code>usertoken</code> with your personal API key.
 </aside>
 <h1 id='garmin-integration-internal'>Garmin Integration [Internal]</h1><h1 id='oauth-connect'>OAuth Connect</h1>
 <p>OAuth 1.0a is implemented with Garmin Services to achieve authentication. Authentication is achieved in 3 steps, Redirection, callback and authentication</p>
 <h1 id='1-redirection'>1. Redirection</h1><h2 id='generate-the-redirect-and-callback-url'>Generate the redirect and callback url.</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\ </span>https://api.vantagecircle.com/vantagefit/api/v1/garmin/redirecturl <span class="se">\</span>
-  -H <span class="s1">'X-XSRF-TOKEN: somerandomtoken'</span>
+  -H <span class="s1">'X-XSRF-TOKEN: usertoken'</span>
   -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 <blockquote>
@@ -357,7 +357,7 @@ Remember — Make sure to store the callback url in session variable.
 Note — Make sure to verify all three properties are present and not null or empty otherwise the callback is a failure.
 </aside>
 <h1 id='3-authentication'>3. Authentication</h1><h2 id='validate-authenticate-signature'>Validate Authenticate signature.</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\ </span>https://api.vantagecircle.com/vantagefit/api/v1/garmin/authenticate <span class="se">\</span>
-  -H <span class="s1">'X-XSRF-TOKEN: somerandomtoken'</span>
+  -H <span class="s1">'X-XSRF-TOKEN: usertoken'</span>
   -H <span class="s1">'Content-Type: application/json'</span>
   -d <span class="s1">'{
     "oauth_verifier": "M2HYTu09w7",
@@ -445,7 +445,7 @@ Note — Make sure to verify all three properties are present and not null or em
 
 ```shell
 curl -X GET \ https://api.vantagecircle.com/api/rewards/user/search?source=nominate&q=keyword&limit=10 \
-  -H 'X-XSRF-TOKEN: somerandomtoken'
+  -H 'X-XSRF-TOKEN: usertoken'
 ```
 
 > The above command returns JSON structured like this:
@@ -495,7 +495,7 @@ Remember — Make sure to change the keword in endpoint to your own search keywo
 ```shell
 curl -X POST \
   https://api.vantagecircle.com/api/award/config \
-  -H 'X-XSRF-TOKEN: somerandomtoken' \
+  -H 'X-XSRF-TOKEN: usertoken' \
   -d '{
       "receiverIds": [123456, 789102]
   }'
