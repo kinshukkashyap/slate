@@ -21,17 +21,17 @@ Welcome to the Garmin Connect Vantage Fit API Documentation.
 ```shell
 # pass the X-XSRF-TOKEN in header with each request
 curl -X GET \ api_endpoint_here \
-  -H 'X-XSRF-TOKEN: somerandomtoken'
+  -H 'X-XSRF-TOKEN: usertoken'
 ```
 
-> Make sure to replace `somerandomtoken` with your API key.
+> Make sure to replace `usertoken` with your session token.
 
 We expect for the X-XSRF-TOKEN  to be included in all API requests to the server in a header that looks like the following:
 
-`X-XSRF-TOKEN: somerandomtoken`
+`X-XSRF-TOKEN: usertoken`
 
 <aside class="notice">
-You must replace <code>somerandomtoken</code> with your personal API key.
+You must replace <code>usertoken</code> with your personal API key.
 </aside>
 
 #Garmin Integration [Internal]
@@ -46,7 +46,7 @@ OAuth 1.0a is implemented with Garmin Services to achieve authentication. Authen
 
 ```shell
 curl -X GET \ https://api.vantagecircle.com/vantagefit/api/v1/garmin/redirecturl \
-  -H 'X-XSRF-TOKEN: somerandomtoken'
+  -H 'X-XSRF-TOKEN: usertoken'
   -H 'Content-Type: application/json'
 ```
 
@@ -105,7 +105,7 @@ Note — Make sure to verify all three properties are present and not null or em
 
 ```shell
 curl -X POST \ https://api.vantagecircle.com/vantagefit/api/v1/garmin/authenticate \
-  -H 'X-XSRF-TOKEN: somerandomtoken'
+  -H 'X-XSRF-TOKEN: usertoken'
   -H 'Content-Type: application/json'
   -d '{
     "oauth_verifier": "M2HYTu09w7",
@@ -173,7 +173,7 @@ err | String | The error message.
 
 ```shell
 curl -X GET \ https://api.vantagecircle.com/api/rewards/user/search?source=nominate&q=keyword&limit=10 \
-  -H 'X-XSRF-TOKEN: somerandomtoken'
+  -H 'X-XSRF-TOKEN: usertoken'
 ```
 
 > The above command returns JSON structured like this:
@@ -223,7 +223,7 @@ Remember — Make sure to change the keword in endpoint to your own search keywo
 ```shell
 curl -X POST \
   https://api.vantagecircle.com/api/award/config \
-  -H 'X-XSRF-TOKEN: somerandomtoken' \
+  -H 'X-XSRF-TOKEN: usertoken' \
   -d '{
       "receiverIds": [123456, 789102]
   }'
